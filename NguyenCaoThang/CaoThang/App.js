@@ -27,7 +27,7 @@ export default function App() {
 
     
     <View style={{ flex: 1, paddingHorizontal: 15 }}>
-    <Header></Header>
+    {/* <Header></Header> */}
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen

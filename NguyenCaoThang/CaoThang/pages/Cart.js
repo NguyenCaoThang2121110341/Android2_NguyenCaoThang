@@ -1,9 +1,21 @@
-import React from 'react';
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity,Button } from 'react-native';
 
 export default function Cart({ route }) {
-  const { cartItems } = route.params;
+  const { cartItems} = route.params;
+  const [items, setItems] = useState(cartItems);
+ 
 
+
+  const handleRemoveFromCartPress = (productId) => {
+    setItems((prevItems) => prevItems.filter((item) => item.id !== productId));
+    route.params.onRemoveFromCart(productId); // Call the callback function passed from the Home component
+  };
+  // useEffect(() => {
+  //   setItems(cartItems);
+  // }, [cartItems]);
+
+ 
   const renderItem = ({ item }) => (
     <View style={styles.cartItem}>
       <Image style={styles.productImage} source={{ uri: item.image }} />
@@ -11,6 +23,13 @@ export default function Cart({ route }) {
         <Text style={styles.productName}>{item.title}</Text>
         <Text style={styles.productPrice}>Price: ${item.price.toFixed(2)}</Text>
       </View>
+      <TouchableOpacity
+        style={styles.deleteButton}
+        onPress={() => handleRemoveFromCartPress(item.id)}
+      >
+        <Text style={styles.deleteButtonText}>Delete</Text>
+      </TouchableOpacity>
+      {/* <Button title="Remove" onPress={() => handleRemoveFromCartPress(item.id)} /> */}
     </View>
   );
 

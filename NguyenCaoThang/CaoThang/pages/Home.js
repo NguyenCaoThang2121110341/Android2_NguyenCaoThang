@@ -11,16 +11,26 @@ export default function HomeScreen() {
         navigation.navigate('SingleProduct', { product });
     };
 
+    const handleRemoveFromCart = (productId) => {
+        setItems((prevCartItems) => prevCartItems.filter((item) => item.id !== productId));
+      };
     const [products, setProducts] = useState([]);
     const [cartItems, setCartItems] = useState([]);
+    useEffect(() => {
+        alert('Cart items have been updated: ' + JSON.stringify(cartItems));
+    }, [cartItems]);
 
     const handleAddToCartPress = (product) => {
-        setCartItems([...cartItems, product]); // Thêm sản phẩm vào cartItems
-        alert('Sản phẩm đã được thêm vào giỏ hàng');
+        setCartItems((prevCartItems) => [...prevCartItems, product]);
+        alert('Product has been added to the cart');
     };
+   
     const handleCartPress = () => {
-        navigation.navigate('Cart', { cartItems }); // Chuyển hướng tới trang Cart và truyền danh sách sản phẩm trong Cart
-    };
+        navigation.navigate('Cart', {
+          cartItems,
+          onRemoveFromCart: handleRemoveFromCart, // Pass the callback function to the Cart component
+        });
+      };
 
     useEffect(() => {
         getAllProduct();
@@ -111,6 +121,10 @@ export default function HomeScreen() {
                             >
                                 <Text style={styles.buttonText}>Cart</Text>
                             </TouchableOpacity>
+
+                            {/* <TouchableOpacity style={styles.cartButton} onPress={handleCartPress}>
+                                <Text style={styles.buttonText}>Giỏ hàng</Text>
+                            </TouchableOpacity> */}
                             </View>
                         </View>
                     </TouchableOpacity>
