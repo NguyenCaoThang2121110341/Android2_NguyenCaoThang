@@ -14,12 +14,10 @@ function Menu() {
     const handleLoginPress = () => {
         navigation.navigate('Login');
     };
-    // const handleCartPress = () => {
-    //     navigation.navigate('Cart');
-    // };
-    const handleCartPress = () => {
-        navigation.navigate('Cart', { cartItems }); // Chuyển hướng tới trang Cart và truyền danh sách sản phẩm trong Cart
+    const handleSearchPress = () => {
+        navigation.navigate('Search');
     };
+   
 
     
     
@@ -32,7 +30,7 @@ function Menu() {
             }
                 onPress={() => handleHomePress()}
             >
-                <Icon name="home" size={20} color="#333333" />
+                <Icon name="home" size={20} color="green" />
             </TouchableOpacity>
 
 
@@ -41,7 +39,7 @@ function Menu() {
             }
                 onPress={() => handleLoginPress()}
             >
-                <Icon name="user" size={20} color="#333333" />
+                <Icon name="user" size={20} color="green" />
             </TouchableOpacity>
 
             <TouchableOpacity style={
@@ -49,9 +47,9 @@ function Menu() {
                 
             }
             
-                onPress={() => handleCartPress()}
+                onPress={() => handleSearchPress()}
             >
-                <Icon name="shopping-cart" size={20} color="#333333" />
+                <Icon name="search" size={20} color="green" />
             </TouchableOpacity>
             
            
@@ -78,9 +76,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#f2f2f2',
         height: 50,
+ 
+     
     },
     button: {
-        padding: 10,
+        padding: 5,
     },
     buttonText: {
         fontSize: 16,
@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     },
     activeMenuItem: {
         backgroundColor: '#e0e0e0',
+        height :50
     },
 });
 

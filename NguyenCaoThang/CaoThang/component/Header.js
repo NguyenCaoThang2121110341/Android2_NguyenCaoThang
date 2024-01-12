@@ -4,7 +4,7 @@ import { StyleSheet, Image, Text, View } from 'react-native';
 export default function Header() {
     return (
         <View style={styles.headerContainer}>
-            <Image source={require('../assets/lg.png')} style={styles.logo} />
+            <Image source={require('../assets/lg.jpg')} style={styles.logo} />
             {/* <Text style={styles.headerText}>App Bán Hàng</Text> */}
 
         </View>
@@ -14,8 +14,8 @@ export default function Header() {
 const styles = StyleSheet.create({
     headerContainer: {
         backgroundColor: '#f2f2f2',
-        // paddingVertical: 10,
-        // paddingHorizontal: 20,
+        // paddingVertical: 5,
+        // paddingHorizontal: 5,
         // marginBottom: 10,
     },
     // headerText: {
@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
     //     textAlign: 'center',
     // },
     logo: {
-        width: 300,
-        height: 50,
-        marginLeft:50,
+        width: 370,
+        height: 40,
+        marginLeft:5,
     },
 });

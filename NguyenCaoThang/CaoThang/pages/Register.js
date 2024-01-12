@@ -3,20 +3,16 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import Header from '../component/Header';
 import Footer from '../component/Footer';
-import { useNavigation } from '@react-navigation/native';
 
-export default function Login() {
-  const navigation = useNavigation();
-  const handleRegisterPress = () => {
-    navigation.navigate('Register');
-};
+export default function Register() {
 
+  
   return (
     <View style={styles.aaa}>
    
     <View style={styles.container}>
       
-      <Text style={styles.title}>LOGIN</Text>
+      <Text style={styles.title}>REGISTER</Text>
       <View style={styles.formContainer}>
         <TextInput
           style={styles.input}
@@ -27,21 +23,19 @@ export default function Login() {
           placeholder="Password"
           secureTextEntry
         />
+         <TextInput
+          style={styles.input}
+          placeholder="Confirm Password"
+          secureTextEntry
+        />
+         <TextInput
+          style={styles.input}
+          placeholder="Email"
+          secureTextEntry
+        />
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Login</Text>
+          <Text style={styles.buttonText}>Register</Text>
         </TouchableOpacity>
-<Text>
-
-</Text>
-        <TouchableOpacity
-        style={
-          styles.rgItem
-        }
-        onPress={() => handleRegisterPress()}
-      >
-        <Text style={styles.rgItemText}>You dont have any account? REGISTER</Text>
-      </TouchableOpacity>
-
       </View>
       <StatusBar style="auto" />
       

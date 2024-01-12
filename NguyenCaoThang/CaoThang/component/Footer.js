@@ -12,9 +12,9 @@ export default function Footer() {
 const styles = StyleSheet.create({
     footerContainer: {
         backgroundColor: 'green',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-        marginTop: 10,
+        paddingVertical: 3,
+        paddingHorizontal: 3,
+        marginTop: 3,
       },
       footerText: {
         fontSize: 14,

@@ -90,7 +90,13 @@ export default function HomeScreen() {
         <View style={styles.container}>
               
         <ScrollView contentContainerStyle={styles.productContainer}>
-               <Image source={require('../assets/bn.jpg')} style={styles.logo} />
+               <Image source={require('../assets/bn.jpg')} style={styles.banner} />
+               <Text>  </Text>
+               <TouchableOpacity style={styles.checkoutButton} onPress={handleCartPress}>
+                <Text style={styles.buttonText}>CART</Text>
+                <Icon style={styles.iconcart} name="shopping-cart" size={20} color="white" />
+            </TouchableOpacity>
+            <Text>  </Text>
         <Text style={styles.title}>PRODUCTS</Text>
             {products.map((product) => (
                 <TouchableOpacity
@@ -99,22 +105,25 @@ export default function HomeScreen() {
                     onPress={() => handleProductPress(product)}
                 >
                     <Image style={styles.productImage} source={{ uri: product.image }} />
+
+                   
+
                     <View style={styles.productDetails}>
                         <Text style={styles.productName}>{product.title}</Text>
                         <Text style={styles.productPrice}>Price: ${product.price.toFixed(2)}</Text>
-                        <View style={styles.ratingContainer}>
+                        {/* <View style={styles.ratingContainer}>
                             <Text style={styles.ratingText}>Rating: </Text>
                             <FontAwesome name="star" style={styles.starIcon} />
                             <Text style={styles.ratingValue}>{product.rating.rate.toFixed(1)}</Text>
                             <Text style={styles.ratingCount}>({product.rating.count} reviews)</Text>
-                        </View>
+                        </View> */}
                         <View style={styles.buttonContainer}>
-                            <TouchableOpacity
+                            {/* <TouchableOpacity
                                 style={styles.detailsButton}
                                 onPress={() => handleProductPress(product)}
                             >
                                 <Text style={styles.buttonText}>Details</Text>
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
                             <TouchableOpacity
                                 style={styles.cartButton}
                                 onPress={() => handleAddToCartPress(product)}
@@ -130,10 +139,7 @@ export default function HomeScreen() {
                     </TouchableOpacity>
                 ))}
             </ScrollView>
-            <TouchableOpacity style={styles.checkoutButton} onPress={handleCartPress}>
-                <Text style={styles.buttonText}>CART</Text>
-                <Icon style={styles.iconcart} name="shopping-cart" size={20} color="white" />
-            </TouchableOpacity>
+            
         </View>
 
 
@@ -310,8 +316,15 @@ const styles = StyleSheet.create({
         paddingVertical: 8,
         paddingHorizontal: 12,
         borderRadius: 4,
+        width:340,
+        height: 50
     },
     iconcart:{
         textAlign: 'center',
+    },
+    banner:{
+        width:340,
+        height: 200
+
     }
 });

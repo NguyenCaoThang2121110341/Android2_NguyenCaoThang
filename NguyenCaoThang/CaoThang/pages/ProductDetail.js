@@ -34,14 +34,14 @@ const ProductDetail = () => {
         <Text style={styles.ratingCount}>({product.rating.count} reviews)</Text>
       </View>
       <View style={styles.buyContainer}>
-        <TextInput
+        {/* <TextInput
           style={styles.quantityInput}
           value={String(quantity)}
           onChangeText={handleQuantityChange}
           keyboardType="numeric"
-        />
+        /> */}
         <TouchableOpacity style={styles.buyButton} onPress={handleBuyNow}>
-          <Text style={styles.buyButtonText}>Thêm vào giỏ hàng</Text>
+          <Text style={styles.buyButtonText}>Add to cart</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
     paddingHorizontal: 8,
   },
-  buyButton: {backgroundColor: 'blue',
+  buyButton: {backgroundColor: 'green',
   paddingVertical: 8,
   paddingHorizontal: 16,
   borderRadius: 4,

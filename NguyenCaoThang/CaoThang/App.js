@@ -10,6 +10,9 @@ import Header from './component/Header';
 import Login from './pages/Login';
 import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
+import Footer from './component/Footer';
+import Register from './pages/Register';
+import Search from './pages/Search';
 
 const Stack = createStackNavigator();
 
@@ -26,31 +29,41 @@ export default function App() {
       // <MenuactiveMenuItem={activeMenuItem}onMenuItemPress={handleMenuItemPress} />
 
     
-    <View style={{ flex: 1, paddingHorizontal: 15 }}>
-    {/* <Header></Header> */}
+    <View style={{ flex: 1, paddingHorizontal: 10, paddingHorizontal:5 }}>
+    <Header></Header>
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
 
           name="Home"
           component={Home}
-          options={{ headerTitle: 'HOME' }} // Thay đổi tiêu đề hiển thị
+          options={{ headerTitle: '' }}
         />
-        <Stack.Screen name="SingleProduct" component={ProductDetail} options={{ headerTitle: 'Chi tiết sản phẩm' }} />
+        <Stack.Screen name="SingleProduct" component={ProductDetail} options={{ headerTitle: ' ' }} />
         <Stack.Screen
           name="Login"
           component={Login}
-          options={{ headerTitle: 'LOGIN' }} // Thay đổi tiêu đề hiển thị
+          options={{ headerTitle: 'LOGIN' }} 
         />
          <Stack.Screen
           name="Cart"
           component={Cart}
-          options={{ headerTitle: 'CART' }} // Thay đổi tiêu đề hiển thị
+          options={{ headerTitle: 'CART' }} 
+        />
+         <Stack.Screen
+          name="Register"
+          component={Register}
+          options={{ headerTitle: 'REGISTER' }} 
+        />
+         <Stack.Screen
+          name="Search"
+          component={Search}
+          options={{ headerTitle: 'SEARCH' }} 
         />
       </Stack.Navigator>
       <Menu/>
     </NavigationContainer>
-    
+    <Footer/>
   </View>
   );
 };
