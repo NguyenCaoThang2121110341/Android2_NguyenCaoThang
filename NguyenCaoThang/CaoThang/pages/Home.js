@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import axios from 'axios';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
+import { CartContext } from '../Provider/CartContext';
 
 export default function HomeScreen() {
+    // const { addToCart } = useContext(CartContext);
     const navigation = useNavigation();
     const handleProductPress = (product) => {
         navigation.navigate('SingleProduct', { product });
@@ -21,8 +23,10 @@ export default function HomeScreen() {
     }, [cartItems]);
 
     const handleAddToCartPress = (product) => {
-        setCartItems((prevCartItems) => [...prevCartItems, product]);
+        addToCart(product);
         alert('Product has been added to the cart');
+        // setCartItems((prevCartItems) => [...prevCartItems, product]);
+        // alert('Product has been added to the cart');
     };
    
     const handleCartPress = () => {
@@ -118,18 +122,18 @@ export default function HomeScreen() {
                             <Text style={styles.ratingCount}>({product.rating.count} reviews)</Text>
                         </View> */}
                         <View style={styles.buttonContainer}>
-                            {/* <TouchableOpacity
-                                style={styles.detailsButton}
+                            <TouchableOpacity
+                                style={styles.cartButton}
                                 onPress={() => handleProductPress(product)}
                             >
                                 <Text style={styles.buttonText}>Details</Text>
-                            </TouchableOpacity> */}
-                            <TouchableOpacity
+                            </TouchableOpacity>
+                            {/* <TouchableOpacity
                                 style={styles.cartButton}
                                 onPress={() => handleAddToCartPress(product)}
                             >
                                 <Text style={styles.buttonText}>Cart</Text>
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
 
                             {/* <TouchableOpacity style={styles.cartButton} onPress={handleCartPress}>
                                 <Text style={styles.buttonText}>Giỏ hàng</Text>

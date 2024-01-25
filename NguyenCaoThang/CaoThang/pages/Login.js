@@ -1,15 +1,38 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { useState, useContext } from 'react';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity,Alert } from 'react-native';
 import Header from '../component/Header';
 import Footer from '../component/Footer';
 import { useNavigation } from '@react-navigation/native';
+import AuthContext from '../Auth/AuthContext';
 
 export default function Login() {
   const navigation = useNavigation();
   const handleRegisterPress = () => {
     navigation.navigate('Register');
 };
+
+
+const [value, setValue] = useState(true);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+ 
+    const { login } = useContext(AuthContext);
+
+
+    const handleLogin = () => {
+
+        const loginSuccess = login(email, password);
+        if (loginSuccess) {
+            Alert.alert('Waiting');
+            navigation.replace('Home');
+        }
+        if (!loginSuccess) {
+            Alert.alert('Wrong account password or blank information');
+        }
+    };
+
 
   return (
     <View style={styles.aaa}>
@@ -21,13 +44,15 @@ export default function Login() {
         <TextInput
           style={styles.input}
           placeholder="Username"
+          onChangeText={(text) => setEmail(text)}
         />
         <TextInput
           style={styles.input}
           placeholder="Password"
           secureTextEntry
+          onChangeText={(text) => setPassword(text)}
         />
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button}  onPress={handleLogin}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
 <Text>

@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { View, TextInput, Button, FlatList, Text, StyleSheet,TouchableOpacity,ScrollView, Image } from 'react-native';
 import axios from 'axios';
 import { FontAwesome } from '@expo/vector-icons';
-
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 export default function Search() {
   const [products, setProducts] = useState([]);
   const [searchInput, setSearchInput] = useState('');
+  const navigation = useNavigation();
   useEffect(() => {
     getAllProduct();
 }, []);

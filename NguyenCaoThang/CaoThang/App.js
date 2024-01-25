@@ -13,22 +13,31 @@ import Cart from './pages/Cart';
 import Footer from './component/Footer';
 import Register from './pages/Register';
 import Search from './pages/Search';
+import { CartProvider } from '../CaoThang/Provider/CartContext';
+import AuthContext from './Auth/AuthContext';
 
 const Stack = createStackNavigator();
 
 export default function App() {
 
+  const [registeredUser, setRegisteredUser] = useState(null);
 
+  const register = (email, password) => {
+    setRegisteredUser({ email, password });
+  };
+
+  const login = (email, password) => {
+    if (registeredUser && registeredUser.email === email && registeredUser.password === password) {
+      return true;
+    }
+    return false;
+  };
   
   return (
 
     
-      //  {activeMenuItem === 'Home' && <Home />}
-      // {activeMenuItem === 'Login' && <Login />}
-      // {activeMenuItem === 'Cart' && <Cart />}
-      // <MenuactiveMenuItem={activeMenuItem}onMenuItemPress={handleMenuItemPress} />
-
-    
+    <AuthContext.Provider value={{ login, register }}>
+      <CartProvider>
     <View style={{ flex: 1, paddingHorizontal: 10, paddingHorizontal:5 }}>
     <Header></Header>
     <NavigationContainer>
@@ -65,6 +74,8 @@ export default function App() {
     </NavigationContainer>
     <Footer/>
   </View>
+  </CartProvider>
+  </AuthContext.Provider>
   );
 };
 const styles = StyleSheet.create({

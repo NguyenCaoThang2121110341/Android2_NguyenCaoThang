@@ -1,10 +1,36 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity,Alert } from 'react-native';
 import Header from '../component/Header';
 import Footer from '../component/Footer';
+import AuthContext from '../Auth/AuthContext';
+import { useState, useContext } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Register() {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const { register } = useContext(AuthContext);
+  const navigation = useNavigation();
+
+  const handleRegister = () => {
+    if (password !== confirmPassword) {
+      Alert.alert('Passwords do not match');
+    } else if (email === '' || password === '' || confirmPassword === '') {
+      Alert.alert('Please fill in all fields');
+    } else {
+      register(email, password);
+      Alert.alert('Registration successful');
+      navigation.replace('Login');
+    }
+  };
+
+  const goToLoginScreen = () => {
+    navigation.navigate('Login');
+  };
 
   
   return (
@@ -16,24 +42,24 @@ export default function Register() {
       <View style={styles.formContainer}>
         <TextInput
           style={styles.input}
-          placeholder="Username"
+          placeholder="Email"
+          onChangeText={text => setEmail(text)}
         />
         <TextInput
           style={styles.input}
           placeholder="Password"
           secureTextEntry
+          onChangeText={text => setPassword(text)}
         />
          <TextInput
           style={styles.input}
           placeholder="Confirm Password"
           secureTextEntry
+          onChangeText={text => setConfirmPassword(text)}
         />
-         <TextInput
-          style={styles.input}
-          placeholder="Email"
-          secureTextEntry
-        />
-        <TouchableOpacity style={styles.button}>
+     
+        <TouchableOpacity style={styles.button} onPress={handleRegister}>
+          
           <Text style={styles.buttonText}>Register</Text>
         </TouchableOpacity>
       </View>
